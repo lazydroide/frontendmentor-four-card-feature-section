@@ -1,0 +1,257 @@
+*, 
+*::before, 
+*::after{
+    box-sizing: border-box;
+}
+ 
+*{
+    margin: 0;
+    padding: 0;
+    font: inherit;
+}
+
+body {
+    min-height: 100svh;
+}
+ 
+img, picture, svg, video, canvas{
+    max-width: 100%;
+    display: block;
+}
+
+@media(prefers-reduced-motion: no-preference) {
+    :has(:target) {
+        scroll-behavior: smooth;
+        scroll-padding-top: 3rem; /* para separar el punto de stop de la parte superior de la pantalla*/
+    }
+}
+ 
+@media (prefers-reduced-motion: reduce){
+     html:focus-within {
+        scroll-behavior: auto;
+     }
+     *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+        transition: none;
+    }
+}
+
+
+/* variables */
+:root {
+    
+    --color-red: hsl(0, 78%, 62%);
+    --color-cyan: hsl(180, 62%, 55%);
+    --color-orange: hsl(34, 97%, 64%);
+    --color-blue: hsl(212, 86%, 64%);
+    --color-very-dark-blue: hsl(234, 12%, 34%);
+    --color-grayish-blue: hsl(229, 6%, 66%);
+    --color-very-light-gray: hsl(0, 0%, 98%);
+    --color-white: white;
+
+    --fs-13: 0.8125rem;
+    --fs-15: 0.9375rem;
+    --fs-20: 1.25rem;
+    --fs-24: 1.5rem;
+    --fs-36: 2.25rem;
+
+    --radius: 8px;
+
+    font-family: 'Poppins', sans-serif;
+}
+
+/* typography */
+
+.text-title {
+    font-size: var(--fs-36);
+    font-weight: 600;
+    line-height: 132%;
+    letter-spacing: 0,0225rem;
+    text-align: center;
+    color: var(--color-very-dark-blue);
+}
+
+.text-subtitle {
+    font-size: var(--fs-36);
+    font-weight: 200;
+    text-align: center;
+    color: var(--color-very-dark-blue);
+}
+
+.text-body {
+    font-size: var(--fs-15);
+    font-weight: 400;
+    line-height: 169%;
+    letter-spacing: 0,004rem;
+    text-align: center;
+    max-width: 55ch;
+    color: var(--color-grayish-blue);
+}
+
+.text-card-title {
+    font-size: var(--fs-20);
+    font-weight: 600;
+    color: var(--color-very-dark-blue);
+}
+
+.text-card-body {
+    font-size: var(--fs-13);
+    font-weight: 400;
+    line-height: 169%;
+    letter-spacing: 0.008rem;
+    color: var(--color-very-dark-blue);
+}
+
+body {
+    background-color: var(--color-very-light-gray);    
+}
+
+.text {
+    margin: 4.5rem auto 2.5rem;
+    padding: 0.75rem 0;
+    width: fit-content;
+}
+
+.text .description{
+    margin-top: 18px;
+}
+
+
+.cards {
+    margin: 0 auto 16px;
+    padding: 16px 15px;
+    max-width: fit-content;
+
+    display: grid;    
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-areas: 
+        "one two four"
+        "one three four";
+    gap: 30px;
+}
+
+.card {
+    --_border: var(--border-color, var(--color-very-dark-blue));
+    max-width: 352px;
+    max-height: 250px;
+    padding: 32px;
+
+    border-radius: var(--radius);
+    background: linear-gradient(var(--_border) 0 5px, var(--color-white) 5px);
+    box-shadow: 0px 8px 24px 0px var(--color-grayish-blue);
+
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.card .icon {
+    margin-top: 31px;
+    align-self: end;
+    width: 64px;
+    height: 64px;
+    background-image: url(./images/icon-supervisor.svg);
+}
+
+.one {
+    --border-color: var(--color-cyan);
+    grid-area: one;    
+    align-self: center;
+}
+.two {
+    --border-color: var(--color-red);
+    grid-area: two;
+}
+.three {    
+    --border-color: var(--color-orange);
+    grid-area: three;
+}
+.four {
+    --border-color: var(--color-blue);
+    grid-area: four;  
+    align-self: center;
+}
+
+.one .icon{
+    background-image: url(./images/icon-supervisor.svg);
+}
+.two .icon{
+    background-image: url(./images/icon-team-builder.svg);
+}
+.three .icon{ 
+    background-image: url(./images/icon-karma.svg);
+}
+.four .icon{
+    background-image: url(./images/icon-calculator.svg);
+}
+
+
+@media (max-width: 69rem) {
+    .cards {
+        display: grid;    
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        grid-template-areas: 
+            "one two"
+            "three four";
+        gap: 24px;
+    }
+}
+
+@media (max-width: 44rem) {
+
+    /* typography */
+    
+    .text-title {
+        font-size: var(--fs-24);
+        line-height: 24px;        
+        letter-spacing: 0,05rem;
+    }
+    
+    .text-subtitle {
+        font-size: var(--fs-24);
+    }
+    
+    .text-body {
+        max-width: 33ch;
+    }
+
+    .text {
+        margin: 78px auto 54px;
+    }
+
+    .text h1 {
+        margin-top: 0.5rem;
+    }
+
+
+    .cards {
+        margin: 0 auto 78px;
+        display: flex; 
+        flex-direction: column;
+        gap: 23px;
+    }
+
+    .card {        
+        max-width: 311px;
+        max-height: 223px;
+        padding: 28px;
+        padding-right: 27px;
+        gap: 3px;
+    }
+    
+    .card .icon {
+        margin-top: 31px;
+        width: 57px;
+        height: 57px;
+        background-size: cover;
+    }
+}
+
+
+.attribution { font-size: 11px; text-align: center; }
+.attribution a { color: hsl(228, 45%, 44%); }
